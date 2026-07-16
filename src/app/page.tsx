@@ -3,8 +3,7 @@ import Link from 'next/link';
 
 import {
   ArrowRight, ChevronRight, Shield, Building2, Award,
-  Wrench, Cpu, Users, Globe, Zap, CheckCircle, Droplets, Flame,
-  Atom, Snowflake, Gauge, FlameIcon, Factory, Beaker, Layers
+  Wrench, Cpu, Users, Globe, CheckCircle, Gauge, Factory
 } from 'lucide-react';
 import { useInView, useCountUp } from '@/hooks/useHooks';
 import { products } from '@/data/products';
