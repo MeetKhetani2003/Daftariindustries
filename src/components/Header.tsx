@@ -132,14 +132,14 @@ function NavItem({ item }: { item: { label: string; path: string; hasDropdown?: 
   }
 
   const products = [
-    { name: 'Industrial Gases', desc: 'Oxygen, Nitrogen, Argon, CO₂ & more' },
-    { name: 'Medical Gases', desc: 'Oxygen, Air, Nitrous Oxide, Medical Grade' },
-    { name: 'Cryogenic Liquids', desc: 'Liquid Nitrogen, Oxygen, Argon, CO₂' },
-    { name: 'Hydrogen', desc: 'Industrial & Green Hydrogen' },
-    { name: 'LPG & LNG', desc: 'Liquefied Petroleum & Natural Gas' },
-    { name: 'Fire Fighting Gases', desc: 'FM-200, Novec 1230, CO₂ Systems' },
-    { name: 'Specialty Gases', desc: 'High Purity & Calibration Gases' },
-    { name: 'Gas Mixtures', desc: 'Custom Blended Gas Solutions' },
+    { name: 'Industrial Gases', desc: 'Oxygen, Nitrogen, Argon, CO₂ & more', slug: 'industrial-gases' },
+    { name: 'Medical Gases', desc: 'Oxygen, Air, Nitrous Oxide, Medical Grade', slug: 'medical-gases' },
+    { name: 'Cryogenic Liquids', desc: 'Liquid Nitrogen, Oxygen, Argon, CO₂', slug: 'cryogenic-liquids' },
+    { name: 'Hydrogen', desc: 'Industrial & Green Hydrogen', slug: 'hydrogen' },
+    { name: 'LPG & LNG', desc: 'Liquefied Petroleum & Natural Gas', slug: 'lpg-lng' },
+    { name: 'Fire Fighting Gases', desc: 'FM-200, Novec 1230, CO₂ Systems', slug: 'fire-fighting-gases' },
+    { name: 'Specialty Gases', desc: 'High Purity & Calibration Gases', slug: 'specialty-gases' },
+    { name: 'Gas Mixtures', desc: 'Custom Blended Gas Solutions', slug: 'gas-mixtures' },
   ];
 
   return (
@@ -158,7 +158,7 @@ function NavItem({ item }: { item: { label: string; path: string; hasDropdown?: 
           {products.map((p) => (
             <Link
               key={p.name}
-              href="/products"
+              href={`/products/${p.slug}`}
               className="block p-3 rounded-lg hover:bg-light-bg transition-colors group"
             >
               <div className="text-sm font-semibold text-dark-navy group-hover:text-primary transition-colors">

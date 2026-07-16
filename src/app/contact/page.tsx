@@ -38,11 +38,34 @@ function ContactSection() {
   const [formData, setFormData] = useState({
     name: '', company: '', phone: '', email: '', requirement: '', message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMsg, setStatusMsg] = useState({ type: '', text: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you for your enquiry. Our team will contact you shortly.');
-    setFormData({ name: '', company: '', phone: '', email: '', requirement: '', message: '' });
+    setIsSubmitting(true);
+    setStatusMsg({ type: '', text: '' });
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setStatusMsg({ type: 'success', text: 'Thank you for your enquiry. Our team will contact you shortly.' });
+        setFormData({ name: '', company: '', phone: '', email: '', requirement: '', message: '' });
+      } else {
+        setStatusMsg({ type: 'error', text: data.error || 'Something went wrong. Please try again.' });
+      }
+    } catch (error) {
+      setStatusMsg({ type: 'error', text: 'Network error. Please try again later.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -134,11 +157,19 @@ function ContactSection() {
                   placeholder="Describe your requirements..."
                 />
               </div>
+
+              {statusMsg.text && (
+                <div className={`p-4 rounded-lg text-sm font-medium ${statusMsg.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+                  {statusMsg.text}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="bg-primary hover:bg-primary/90 text-white px-8 py-3.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+                disabled={isSubmitting}
+                className="bg-primary hover:bg-primary/90 disabled:opacity-70 disabled:cursor-not-allowed text-white px-8 py-3.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
               >
-                Submit Enquiry <Send size={16} />
+                {isSubmitting ? 'Sending...' : 'Submit Enquiry'} {!isSubmitting && <Send size={16} />}
               </button>
             </form>
           </div>
