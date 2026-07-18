@@ -1,9 +1,8 @@
 "use client";
 import Link from 'next/link';
 
-import { ArrowRight, CheckCircle, Clock, Calendar, Zap, AlertTriangle, Building2, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight, CheckCircle, Calendar, Zap, AlertTriangle, Building2, Image as ImageIcon } from 'lucide-react';
 import { useInView } from '@/hooks/useHooks';
-import { useState } from 'react';
 
 export default function CaseStudiesPage() {
   return (
