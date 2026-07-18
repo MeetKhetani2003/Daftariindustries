@@ -10,6 +10,7 @@ export default function EngineeringPage() {
       <PageHero />
       <EngineeringSolutions />
       <ProcessSection />
+      <InternationalProjectsSection />
       <CTASection />
     </>
   );
@@ -166,6 +167,69 @@ function ProcessSection() {
               </div>
               <h3 className="text-dark-navy font-semibold mb-2">{step.title}</h3>
               <p className="text-text-light text-sm leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function InternationalProjectsSection() {
+  const { ref, isInView } = useInView();
+  const projects = [
+    {
+      title: 'Project 1',
+      client: 'Saloni Ceramic',
+      director: 'Shailesh Virani',
+      location: 'Khartoum, Sudan',
+      img: '/images/hero_industrial_plant.png',
+      year: '2003–2004',
+      type: 'International Project',
+    },
+    {
+      title: 'Project 2',
+      client: 'Sanitaryware Project',
+      director: 'Name not available',
+      location: 'Bangladesh',
+      img: '/images/pipeline_infrastructure.png',
+      year: '2003–2004',
+      type: 'International Project',
+    },
+  ];
+
+  return (
+    <section className="py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-6">
+        <div ref={ref} className={`text-center mb-16 ${isInView ? 'animate-fade-up' : 'opacity-0'}`}>
+          <span className="text-primary text-sm font-semibold uppercase tracking-wider">Overseas Work Portfolio</span>
+          <h2 className="text-3xl md:text-4xl font-semibold text-dark-navy mt-3 mb-4">
+            International Projects
+          </h2>
+          <p className="text-text-light max-w-2xl mx-auto leading-relaxed">
+            Delivering engineering excellence beyond borders.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-8">
+          {projects.map((proj, i) => (
+            <div key={i} className="group relative rounded-xl overflow-hidden shadow-lg border border-light-border bg-white flex flex-col sm:flex-row">
+              <div className="sm:w-2/5 shrink-0 overflow-hidden">
+                <img src={proj.img} alt={proj.client} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 min-h-[200px]" />
+              </div>
+              <div className="p-6 flex flex-col justify-center">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-accent text-xs font-bold uppercase tracking-wider">{proj.year}</span>
+                  <span className="text-primary text-xs font-semibold">{proj.title}</span>
+                </div>
+                <h3 className="text-xl font-bold text-dark-navy mb-1">{proj.client}</h3>
+                <p className="text-text-light text-sm mb-4">Director: {proj.director}</p>
+                <div className="flex items-center gap-2 mt-auto">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <span className="text-primary">📍</span>
+                  </div>
+                  <span className="text-dark-navy font-medium text-sm">{proj.location}</span>
+                </div>
+              </div>
             </div>
           ))}
         </div>

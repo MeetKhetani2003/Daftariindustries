@@ -14,21 +14,18 @@ export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState('All');
 
   const images: GalleryImage[] = [
-    { src: '/images/cryogenic_tank.png', caption: 'Cryogenic Storage Facility – Mumbai', category: 'Cryogenic' },
-    { src: '/images/pipeline_infrastructure.png', caption: 'Industrial Plant Installation', category: 'Industrial' },
-    { src: '/images/hero_industrial_plant.png', caption: 'Engineering Workshop', category: 'Engineering' },
-    { src: '/images/pipeline_infrastructure.png', caption: 'Gas Pipeline Network', category: 'Pipeline' },
-    { src: '/images/hero_industrial_plant.png', caption: 'Hydrogen Processing Unit', category: 'Hydrogen' },
-    { src: '/images/cryogenic_tank.png', caption: 'Oil & Gas Facility', category: 'Oil & Gas' },
-    { src: '/images/gas_cylinders.png', caption: 'Manufacturing Facility', category: 'Manufacturing' },
-    { src: '/images/gas_cylinders.png', caption: 'Chemical Processing', category: 'Chemical' },
-    { src: '/images/medical_oxygen.png', caption: 'Laboratory Testing', category: 'Laboratory' },
-    { src: '/images/medical_oxygen.png', caption: 'Medical Gas Installation', category: 'Medical' },
-    { src: '/images/pipeline_infrastructure.png', caption: 'Power Plant Project', category: 'Power' },
-    { src: '/images/hero_industrial_plant.png', caption: 'Automobile Manufacturing', category: 'Automobile' },
+    { src: '/images/gas_cylinders.png', caption: 'Euro Global Cylinders LLP - LPG Crisis (March 2026)', category: 'Case Studies' },
+    { src: '/images/cryogenic_tank.png', caption: 'Everest Kanto Cylinders (KA SEZ) - LPG Crisis (April 2026)', category: 'Case Studies' },
+    { src: '/images/pipeline_infrastructure.png', caption: 'Everest Kanto Cylinders (Ratadiya) - LPG Crisis (April 2026)', category: 'Case Studies' },
+    { src: '/images/hero_industrial_plant.png', caption: 'Gopal Snacks Limited (Multi-Plant) - Gondal & Modasa Units', category: 'Case Studies' },
+    { src: '/images/hero_industrial_plant.png', caption: 'Saloni Ceramic - Khartoum, Sudan', category: 'International Projects' },
+    { src: '/images/pipeline_infrastructure.png', caption: 'Sanitaryware Project - Bangladesh', category: 'International Projects' },
+    { src: '/images/medical_oxygen.png', caption: 'Medical Gas Installation & Distribution', category: 'Medical' },
+    { src: '/images/gas_cylinders.png', caption: 'Industrial Gas Cylinder Filling Station', category: 'Industrial' },
+    { src: '/images/cryogenic_tank.png', caption: 'Advanced Cryogenic Storage Tank Manufacturing', category: 'Cryogenic' },
   ];
 
-  const categories = ['All', 'Cryogenic', 'Industrial', 'Engineering', 'Pipeline', 'Hydrogen', 'Medical'];
+  const categories = ['All', 'Case Studies', 'International Projects', 'Cryogenic', 'Industrial', 'Medical'];
 
   const filteredImages = activeCategory === 'All'
     ? images

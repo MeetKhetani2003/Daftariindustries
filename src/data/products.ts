@@ -72,4 +72,20 @@ export const products: Product[] = [
     items: ['Analytical Gas Mixtures', 'Process Gas Mixtures', 'Calibration Blends', 'Custom Ratios'],
     img: '/images/cryogenic_tank.png',
   },
+  {
+    name: 'Cryogenic Storage Tank',
+    slug: 'cryogenic-storage-tank',
+    desc: 'Advanced cryogenic storage tanks designed for maximum efficiency and minimum boil-off rates.',
+    fullDesc: 'We design and manufacture vacuum-insulated cryogenic storage tanks for liquid nitrogen, oxygen, argon, and CO₂. With capacities ranging from 5 m³ to 200 m³, our tanks are built to international standards with advanced multilayer insulation technology, ensuring maximum thermal efficiency and minimum boil-off rates for your valuable cryogenic liquids.',
+    items: ['Liquid Nitrogen Storage', 'Liquid Oxygen Storage', 'Liquid Argon Storage', 'Liquid CO₂ Storage', 'Vacuum Insulated Storage'],
+    img: '/images/cryogenic_tank.png',
+  },
+  {
+    name: 'Cryogenic Cylinder Filling Station',
+    slug: 'cryogenic-cylinder-filling-station',
+    desc: 'Complete high-pressure cryogenic cylinder filling stations for industrial and medical gases.',
+    fullDesc: 'Daftari Industries offers turnkey solutions for cryogenic cylinder filling stations. Our high-pressure systems are engineered for safe and efficient filling of oxygen, nitrogen, and argon cylinders. The stations include advanced cryogenic pumps, ambient vaporizers, filling manifolds, and safety controls, ensuring precise filling operations for both industrial and medical gas applications.',
+    items: ['High Pressure Pumps', 'Ambient Vaporizers', 'Filling Manifolds', 'Safety Control Systems', 'Turnkey Installation'],
+    img: '/images/gas_cylinders.png',
+  },
 ];

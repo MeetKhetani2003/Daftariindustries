@@ -89,6 +89,13 @@ function ServicesGrid() {
       desc: '24/7 emergency technical support for gas system failures, safety incidents, and urgent repair requirements.',
       details: ['24/7 Helpline', 'Rapid Response', 'Urgent Repairs', 'Consultation'],
     },
+    {
+      icon: Settings,
+      img: '/images/hero_industrial_plant.png',
+      title: 'Drawing Design & Licensing',
+      desc: 'Complete engineering drawing, approval and licensing support for industrial gas systems.',
+      details: ['Collector NOC', 'PESO Prior Approval', 'Storage of Gases Approval', 'Bottling Plant Licensing', 'Gas Transportation Licensing', 'Engineering Drawing Design', 'Final License Issuance Support'],
+    },
   ];
 
   return (

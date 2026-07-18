@@ -27,6 +27,7 @@ export default function Header() {
     { label: 'Industries', path: '/industries' },
     { label: 'Infrastructure', path: '/infrastructure' },
     { label: 'Services', path: '/services' },
+    { label: 'Case Studies', path: '/case-studies' },
     { label: 'Gallery', path: '/gallery' },
     { label: 'Contact', path: '/contact' },
   ];

@@ -11,6 +11,8 @@ export default function AboutPage() {
       <IntroductionSection />
       <ValuesSection />
       <TimelineSection />
+      <ClientsSection />
+      <AchievementsSection />
       <LeadershipSection />
       <CertificationsSection />
       <CTASection />
@@ -128,13 +130,12 @@ function ValuesSection() {
 function TimelineSection() {
   const { ref, isInView } = useInView();
   const milestones = [
-    { year: '1995', title: 'Foundation', desc: 'Established in Mumbai as an industrial gas distribution company' },
-    { year: '2000', title: 'Cryogenic Division', desc: 'Launched cryogenic storage tank manufacturing division' },
-    { year: '2005', title: 'Engineering Solutions', desc: 'Expanded into turnkey engineering projects and gas pipeline installation' },
-    { year: '2010', title: 'Pan India Presence', desc: 'Established distribution network across major industrial hubs' },
-    { year: '2015', title: 'Hydrogen Systems', desc: 'Entered the hydrogen storage and distribution segment' },
-    { year: '2020', title: 'Green Energy', desc: 'Launched green hydrogen and sustainable energy solutions' },
-    { year: '2025', title: 'Market Leader', desc: 'Recognized as one of India&apos;s premier industrial gas and engineering companies' },
+    { year: '2003–2004', title: 'International Projects', desc: 'Sudan & Bangladesh' },
+    { year: '2021', title: '850 Ton LPG Supply in One Month', desc: '' },
+    { year: '2021', title: '6000 Ton LPG Supply in Seven Months', desc: '' },
+    { year: '2025', title: 'Gopal Snacks Multi-Plant Installation', desc: '' },
+    { year: '2026', title: 'Euro Global Cylinders LLP Emergency LPG Project', desc: '' },
+    { year: '2026', title: 'Everest Kanto Cylinders Emergency LPG Project', desc: '' },
   ];
 
   return (
@@ -150,8 +151,8 @@ function TimelineSection() {
           {milestones.map((m, i) => (
             <div key={i} className="flex gap-6 pb-8 last:pb-0 relative">
               <div className="flex flex-col items-center">
-                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shrink-0">
-                  <span className="text-white text-xs font-bold">{m.year.slice(2)}</span>
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center shrink-0 shadow-lg">
+                  <span className="text-white text-xs font-bold text-center px-1">{m.year}</span>
                 </div>
                 {i < milestones.length - 1 && (
                   <div className="w-0.5 flex-1 bg-light-border mt-2" />
@@ -161,6 +162,180 @@ function TimelineSection() {
                 <h3 className="text-dark-navy font-semibold mb-1">{m.title}</h3>
                 <p className="text-text-light text-sm leading-relaxed">{m.desc}</p>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+import { useCountUp as useCountUpLocal } from '@/hooks/useHooks';
+
+function AchievementsSection() {
+  const { ref, isInView } = useInView();
+  const achieve1 = useCountUpLocal(850, isInView);
+  const achieve2 = useCountUpLocal(6000, isInView);
+
+  return (
+    <section className="py-20 md:py-28 bg-dark-navy relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <img
+          src="/images/hero_industrial_plant.png"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="relative max-w-7xl mx-auto px-6">
+        <div ref={ref} className={`text-center mb-16 ${isInView ? 'animate-fade-up' : 'opacity-0'}`}>
+          <span className="text-accent text-sm font-semibold uppercase tracking-wider">Company Achievements</span>
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mt-3 mb-4">
+            Our Key Milestones
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/10 text-center">
+            <div className="text-4xl md:text-5xl font-bold text-accent mb-4">
+              {achieve1} Ton
+            </div>
+            <p className="text-white/80 leading-relaxed font-medium">
+              850 Ton LPG Cylinders supplied in one month during 2021.
+            </p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/10 text-center">
+            <div className="text-4xl md:text-5xl font-bold text-accent mb-4">
+              {achieve2} Ton
+            </div>
+            <p className="text-white/80 leading-relaxed font-medium">
+              6,000 Ton LPG booked and supplied within only seven months.
+            </p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/10 text-center flex flex-col justify-center">
+            <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Globe size={32} className="text-accent" />
+            </div>
+            <p className="text-white/80 leading-relaxed font-medium text-lg">
+              Worked with various kinds of industries.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ClientsSection() {
+  const { ref, isInView } = useInView();
+  
+  const clientCategories = [
+    {
+      category: 'CERAMIC INDUSTRY',
+      clients: [
+        'Simpolo', 'Varmora', 'Sunheart', 'Euro', 'Asian Granito',
+        'Oracle Granito (Himmatnagar)', 'Ikon Granito', 'Metro', 'Face',
+        'Soriso', 'Exotica', 'Montello Ceramic', 'Monarch Ceramic', 'Real Group',
+        'Kajaria Group', 'Vrundavan Group', 'Livanto Ceramic Pvt. Ltd.',
+        'Axwell Granito', 'Ambani Granito', 'Motto Tiles', 'Mega Ceramic',
+        'Millenium', 'Accord', 'Lioli', 'Leesun Tiles Co.', 'Antique Granito',
+        'Casa Tiles', 'Verona Tiles', 'Sekol Tiles LLP', 'Swidan Ceramic',
+        'Shubh Granito', 'Savio Ceramica LLP'
+      ]
+    },
+    {
+      category: 'CEMENT INDUSTRY',
+      clients: [
+        'Hi Bond Cement', 'Tappe Cement', 'UltraTech Cement', 'A One Cement',
+        'Kishan Cement', 'Major Cement', 'Decora Cement', 'Ajanta Cement',
+        'Gaj Sahara Cement', 'Kailash Cement', 'Pyramid Cement', 'Midland Cement',
+        'Akshar Cement', 'Prince Cement', 'Digvijay Cement', 'Girnaar Cement',
+        'Sumo Cement', 'Shan Cement'
+      ]
+    },
+    {
+      category: 'GINNING INDUSTRY',
+      clients: [
+        'MEP Cotton (India\'s Largest)', 'Jaydeep Cotton (Pan Group)',
+        'Rajvuvanshi Cotton', 'Ronak Cotton (Surendranagar)',
+        'Shree Gita Ginning & Oil Industries (Morbi)', 'Narendra Cotton'
+      ]
+    },
+    {
+      category: 'CLOCK INDUSTRY',
+      clients: [
+        'Ajanta', 'Orpat', 'Sonam Quartz', 'Mehta Clock'
+      ]
+    },
+    {
+      category: 'CYLINDER MANUFACTURERS',
+      clients: [
+        'Everest Kanto Cylinders Limited (KA SEZ Gandhidham)',
+        'Everest Kanto Cylinders Limited (Ratadiya Unit)',
+        'Euro Global Cylinders LLP'
+      ]
+    },
+    {
+      category: 'FOOD INDUSTRY',
+      clients: [
+        'Balaji Wafers (Indore Plant)', 'Gopal Snacks Ltd.', 'Atop', 'Ancora Foods LLP'
+      ]
+    },
+    {
+      category: 'BEARING & METAL PRODUCTS',
+      clients: [
+        'Orbit Bearing Pvt. Ltd.', 'Roles Rings Ltd.'
+      ]
+    },
+    {
+      category: 'STONE CRUSHER',
+      clients: [
+        'Navrachna Stone', 'Gayatri Stone'
+      ]
+    },
+    {
+      category: 'FOOD INDUSTRY & HOTEL CONVECTION',
+      clients: [
+        'The Imperial Palace Rajkot', 'Emerald Club Rajkot', 'Thakkar Lodge',
+        'KBZ Bakery', 'Mahesh Bakery', 'Kamal Bakers'
+      ]
+    },
+    {
+      category: 'HOSPITALS',
+      clients: [
+        'Sadbhavna Hospital', 'Bavarva Hospital, Morbi', 'Kagathara Hospital'
+      ]
+    }
+  ];
+
+  return (
+    <section className="py-20 md:py-28 bg-light-bg">
+      <div className="max-w-7xl mx-auto px-6">
+        <div ref={ref} className={`text-center mb-16 ${isInView ? 'animate-fade-up' : 'opacity-0'}`}>
+          <span className="text-primary text-sm font-semibold uppercase tracking-wider">Our Valuable Clients</span>
+          <h2 className="text-3xl md:text-4xl font-semibold text-dark-navy mt-3 mb-4">
+            Trusted by Industry Leaders
+          </h2>
+          <p className="text-text-light max-w-2xl mx-auto leading-relaxed">
+            We are proud to be the preferred engineering and gas partner for top companies across diverse sectors.
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {clientCategories.map((cat, i) => (
+            <div key={i} className="bg-white rounded-xl p-6 border border-light-border shadow-sm">
+              <div className="flex items-center gap-3 mb-5 border-b border-light-border pb-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                  <CheckCircle size={20} className="text-primary" />
+                </div>
+                <h3 className="text-dark-navy font-bold text-sm tracking-wide uppercase">{cat.category}</h3>
+              </div>
+              <ul className="space-y-2.5">
+                {cat.clients.map((client, j) => (
+                  <li key={j} className="flex items-start gap-2 text-sm">
+                    <span className="text-primary mt-1">•</span>
+                    <span className="text-text-light leading-snug">{client}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
