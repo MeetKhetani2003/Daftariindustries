@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import {
   ArrowRight, ChevronRight, Shield, Building2, Award,
-  Wrench, Cpu, Users, Globe, CheckCircle, Gauge, Factory
+  Wrench, Cpu, Users, Globe, CheckCircle, Gauge, Factory, Truck
 } from 'lucide-react';
 import { useInView, useCountUp } from '@/hooks/useHooks';
 import { products } from '@/data/products';
@@ -15,11 +15,10 @@ export default function HomePage() {
       <StatsSection />
       <AboutSection />
       <ProductsSection />
-      <EngineeringSection />
+      {/* <EngineeringSection /> */}
       <WhyChooseSection />
       <IndustriesSection />
       <QualitySection />
-      <GallerySection />
       <TestimonialsSection />
       <CTASection />
     </>
@@ -56,7 +55,7 @@ function HeroSection() {
             <p className="text-white/70 text-base md:text-lg leading-relaxed mb-10 max-w-xl">
               Delivering industrial gases, cryogenic engineering systems, hydrogen infrastructure,
               gas pipeline engineering, storage solutions, LPG systems and turnkey industrial
-              projects across India.
+              projects across world.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/contact"
@@ -74,7 +73,7 @@ function HeroSection() {
           {/* Hero Image / Visual */}
           <div className="hidden lg:flex justify-center animate-float">
             <div className="relative">
-              <div className="w-[420px] h-[320px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              <div className="w-[450px] h-[350px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                 <img
                   src="/images/cryogenic_tank.png"
                   alt="Cryogenic Storage Tank"
@@ -110,9 +109,9 @@ function HeroSection() {
 function StatsSection() {
   const { ref, isInView } = useInView();
   const projects = useCountUp(500, isInView);
-  const industries = useCountUp(50, isInView);
+  const industries = useCountUp(200, isInView);
   const solutions = useCountUp(30, isInView);
-  const clients = useCountUp(200, isInView);
+  const clients = useCountUp(2000, isInView);
 
   const stats = [
     { value: projects, suffix: '+', label: 'Projects Delivered', icon: Building2 },
@@ -163,7 +162,7 @@ function AboutSection() {
           <div>
             <span className="text-primary text-sm font-semibold uppercase tracking-wider">About Us</span>
             <h2 className="text-3xl md:text-4xl font-semibold text-dark-navy mt-3 mb-6 leading-tight">
-              India&apos;s Trusted Partner in Industrial Gas &amp; Cryogenic Engineering
+              India&apos;s Trusted Partner in Industrial Gas, Cryogenic Engineering &amp; Equipments
             </h2>
             <p className="text-text-light leading-relaxed mb-6">
               Daftari Industries has been a pioneer in the industrial gas and cryogenic engineering
@@ -212,6 +211,9 @@ function AboutSection() {
 function ProductsSection() {
   const { ref, isInView } = useInView();
 
+  const cylinderGasProducts = products.slice(0, 6);
+  const supplyTransportationProducts = products.slice(11, 17);
+
   return (
     <section className="py-20 md:py-28 bg-light-bg">
       <div className="max-w-7xl mx-auto px-6">
@@ -225,106 +227,143 @@ function ProductsSection() {
             solutions for diverse applications across industries.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {products.map((product, i) => (
-            <Link
-              key={i}
-              href={`/products/${product.slug}`}
-              className="bg-white rounded-xl overflow-hidden border border-light-border hover:border-primary/30 hover:shadow-xl transition-all group cursor-pointer flex flex-col"
-            >
-              <div className="aspect-[3/2] overflow-hidden shrink-0">
-                <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-dark-navy font-semibold mb-2">{product.name}</h3>
-                <p className="text-text-light text-sm leading-relaxed mb-4 flex-grow">{product.desc}</p>
-                <span className="inline-flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all mt-auto">
-                  Learn More <ChevronRight size={14} />
-                </span>
-              </div>
+
+        {/* Cylinder Gas Refilling Section */}
+        <div className="mb-24">
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
+            <h3 className="text-2xl md:text-3xl font-semibold text-dark-navy border-l-4 border-primary pl-4">
+              PESO-Compliant Gas Tank Installation & Commissioning
+            </h3>
+            <Link href="/products" className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all">
+              View More <ArrowRight size={16} />
             </Link>
-          ))}
-        </div>
-        <div className="text-center mt-12">
-          <Link href="/products"
-            className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white px-7 py-3 rounded-lg text-sm font-medium transition-colors"
-          >
-            View All Products <ArrowRight size={16} />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EngineeringSection() {
-  const { ref, isInView } = useInView();
-  const items = [
-    {
-      title: 'Cryogenic Storage Tanks & Tankers',
-      desc: 'Design, manufacturing, and installation of cryogenic storage tanks ranging from 5 m³ to 200 m³ capacity. Our tanks are built to international standards with advanced insulation technology for optimal boil-off rates.',
-      img: '/images/hero_industrial_plant.png',
-      left: true,
-    },
-    {
-      title: 'Hydrogen Storage & Systems',
-      desc: 'Complete hydrogen infrastructure including storage, compression, dispensing, and distribution systems for fuel cell applications, refinery operations, and emerging green hydrogen projects.',
-      img: '/images/cryogenic_tank.png',
-      left: false,
-    },
-    {
-      title: 'Gas Pipeline Engineering',
-      desc: 'Engineering, fabrication, and installation of gas pipeline networks for industrial plants, campuses, and facilities. Includes design, hydro testing, commissioning, and maintenance services.',
-      img: '/images/pipeline_infrastructure.png',
-      left: true,
-    },
-  ];
-
-  return (
-    <section className="py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-6">
-        <div ref={ref} className={`text-center mb-16 ${isInView ? 'animate-fade-up' : 'opacity-0'}`}>
-          <span className="text-primary text-sm font-semibold uppercase tracking-wider">Engineering Solutions</span>
-          <h2 className="text-3xl md:text-4xl font-semibold text-dark-navy mt-3 mb-4">
-            Turnkey Engineering Projects &amp; Systems
-          </h2>
-          <p className="text-text-light max-w-2xl mx-auto leading-relaxed">
-            End-to-end engineering solutions from design and fabrication to installation,
-            commissioning, and maintenance.
-          </p>
-        </div>
-        {items.map((item, i) => (
-          <div
-            key={i}
-            className={`grid lg:grid-cols-2 gap-12 items-center ${i % 2 === 0 ? '' : 'lg:flex-row-reverse'}`}
-          >
-            <div className={`${item.left ? '' : i % 2 === 1 ? 'lg:order-2' : ''}`}>
-              <div className="rounded-xl overflow-hidden shadow-md">
-                <img src={item.img} alt={item.title} className="w-full aspect-video object-cover" />
-              </div>
-            </div>
-            <div className={`${!item.left && i % 2 === 1 ? '' : ''}`}>
-              <h3 className="text-2xl font-semibold text-dark-navy mb-4">{item.title}</h3>
-              <p className="text-text-light leading-relaxed mb-6">{item.desc}</p>
-              <Link href="/engineering"
-                className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
-              >
-                View All Engineering Solutions <ArrowRight size={16} />
-              </Link>
-            </div>
           </div>
-        ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {cylinderGasProducts.map((product, i) => (
+              <Link
+                key={`cyl-${i}`}
+                href={`/products/${product.slug}`}
+                className="bg-white rounded-xl overflow-hidden border border-light-border hover:border-primary/30 hover:shadow-xl transition-all group cursor-pointer flex flex-col"
+              >
+                <div className="aspect-square overflow-hidden shrink-0">
+                  <img src={product.mainImg} alt={product.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="p-5 flex flex-col items-start flex-1">
+                  <h3 className="text-dark-navy font-semibold mb-4 text-lg">{product.title}</h3>
+                  <span className="inline-flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all mt-auto">
+                    Learn More <ChevronRight size={14} />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Supply of Transportation of Gas Section */}
+        <div>
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
+            <h3 className="text-2xl md:text-3xl font-semibold text-dark-navy border-l-4 border-primary pl-4">
+              Cylinder Gas Refilling, Supply in Bulk Gas Tanker & Transportation
+            </h3>
+            <Link href="/products" className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all">
+              View More <ArrowRight size={16} />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {supplyTransportationProducts.map((product, i) => (
+              <Link
+                key={`sup-${i}`}
+                href={`/products/${product.slug}`}
+                className="bg-white rounded-xl overflow-hidden border border-light-border hover:border-primary/30 hover:shadow-xl transition-all group cursor-pointer flex flex-col"
+              >
+                <div className="aspect-square overflow-hidden shrink-0">
+                  <img src={product.mainImg} alt={product.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="p-5 flex flex-col items-start flex-1">
+                  <h3 className="text-dark-navy font-semibold mb-4 text-lg">{product.title}</h3>
+                  <span className="inline-flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all mt-auto">
+                    Learn More <ChevronRight size={14} />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
 }
+
+// function EngineeringSection() {
+//   const { ref, isInView } = useInView();
+//   const items = [
+//     {
+//       title: 'Cryogenic Storage Tanks & Tankers',
+//       desc: 'Design, manufacturing, and installation of cryogenic storage tanks ranging from 5 m³ to 200 m³ capacity. Our tanks are built to international standards with advanced insulation technology for optimal boil-off rates.',
+//       img: '/images/hero_industrial_plant.png',
+//       left: true,
+//     },
+//     {
+//       title: 'Hydrogen Storage & Systems',
+//       desc: 'Complete hydrogen infrastructure including storage, compression, dispensing, and distribution systems for fuel cell applications, refinery operations, and emerging green hydrogen projects.',
+//       img: '/images/cryogenic_tank.png',
+//       left: false,
+//     },
+//     {
+//       title: 'Gas Pipeline Engineering',
+//       desc: 'Engineering, fabrication, and installation of gas pipeline networks for industrial plants, campuses, and facilities. Includes design, hydro testing, commissioning, and maintenance services.',
+//       img: '/images/pipeline_infrastructure.png',
+//       left: true,
+//     },
+//   ];
+
+//   return (
+//     <section className="py-20 md:py-28">
+//       <div className="max-w-7xl mx-auto px-6">
+//         <div ref={ref} className={`text-center mb-16 ${isInView ? 'animate-fade-up' : 'opacity-0'}`}>
+//           <span className="text-primary text-sm font-semibold uppercase tracking-wider">Engineering Solutions</span>
+//           <h2 className="text-3xl md:text-4xl font-semibold text-dark-navy mt-3 mb-4">
+//             Turnkey Engineering Projects &amp; Systems
+//           </h2>
+//           <p className="text-text-light max-w-2xl mx-auto leading-relaxed">
+//             End-to-end engineering solutions from design and fabrication to installation,
+//             commissioning, and maintenance.
+//           </p>
+//         </div>
+//         {items.map((item, i) => (
+//           <div
+//             key={i}
+//             className={`grid lg:grid-cols-2 gap-12 items-center ${i % 2 === 0 ? '' : 'lg:flex-row-reverse'}`}
+//           >
+//             <div className={`${item.left ? '' : i % 2 === 1 ? 'lg:order-2' : ''}`}>
+//               <div className="rounded-xl overflow-hidden shadow-md">
+//                 <img src={item.img} alt={item.title} className="w-full aspect-video object-cover" />
+//               </div>
+//             </div>
+//             <div className={`${!item.left && i % 2 === 1 ? '' : ''}`}>
+//               <h3 className="text-2xl font-semibold text-dark-navy mb-4">{item.title}</h3>
+//               <p className="text-text-light leading-relaxed mb-6">{item.desc}</p>
+//               <Link href="/engineering"
+//                 className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
+//               >
+//                 View All Engineering Solutions <ArrowRight size={16} />
+//               </Link>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }
 
 function WhyChooseSection() {
   const { ref, isInView } = useInView();
   const reasons = [
     { icon: Award, title: 'Experienced Engineers', desc: '25+ years of expertise in industrial gas and cryogenic engineering' },
+    { icon: Truck, title: 'Fastest Delivery', desc: 'Swift and secure logistics ensuring your operations never experience downtime' },
     { icon: Globe, title: 'Pan India Supply', desc: 'Reliable delivery network across all major industrial hubs in India' },
-    { icon: Building2, title: 'Reliable Infrastructure', desc: 'Modern manufacturing and storage facilities meeting international standards' },
+    // { icon: Building2, title: 'Reliable Infrastructure', desc: 'Modern manufacturing and storage facilities meeting international standards' },
     { icon: Shield, title: 'Quality Assurance', desc: 'ISO certified processes with rigorous quality control at every stage' },
     { icon: CheckCircle, title: 'Safety Standards', desc: 'Stringent safety protocols compliant with PESO and international regulations' },
     { icon: Wrench, title: 'Technical Support', desc: 'Dedicated engineering support team for consultation and troubleshooting' },
@@ -480,58 +519,6 @@ function QualitySection() {
   );
 }
 
-function GallerySection() {
-  const { ref, isInView } = useInView();
-  const images = [
-    { src: '/images/cryogenic_tank.png', caption: 'Cryogenic Storage Facility' },
-    { src: '/images/pipeline_infrastructure.png', caption: 'Industrial Plant' },
-    { src: '/images/hero_industrial_plant.png', caption: 'Engineering Workshop' },
-    { src: '/images/pipeline_infrastructure.png', caption: 'Pipeline Installation' },
-    { src: '/images/hero_industrial_plant.png', caption: 'Gas Processing' },
-    { src: '/images/cryogenic_tank.png', caption: 'Oil & Gas Facility' },
-  ];
-
-  return (
-    <section className="py-20 md:py-28 bg-light-bg">
-      <div className="max-w-7xl mx-auto px-6">
-        <div ref={ref} className={`text-center mb-16 ${isInView ? 'animate-fade-up' : 'opacity-0'}`}>
-          <span className="text-primary text-sm font-semibold uppercase tracking-wider">Project Gallery</span>
-          <h2 className="text-3xl md:text-4xl font-semibold text-dark-navy mt-3 mb-4">
-            Our Engineering Projects
-          </h2>
-          <p className="text-text-light max-w-2xl mx-auto leading-relaxed">
-            A glimpse into our completed projects, installations, and engineering
-            achievements across India.
-          </p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-          {images.map((img, i) => (
-            <div key={i} className="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3]">
-              <img
-                src={img.src}
-                alt={img.caption}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-                <div className="p-5">
-                  <p className="text-white text-sm font-medium">{img.caption}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="text-center mt-12">
-          <Link href="/gallery"
-            className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white px-7 py-3 rounded-lg text-sm font-medium transition-colors"
-          >
-            View Full Gallery <ArrowRight size={16} />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function TestimonialsSection() {
   const { ref, isInView } = useInView();
   const testimonials = [
@@ -616,10 +603,10 @@ function CTASection() {
             Request a Quote
           </Link>
           <a
-            href="tel:+912228303456"
+            href="tel:+919820012345"
             className="border-2 border-white text-white hover:bg-white/10 px-8 py-3.5 rounded-lg text-sm font-semibold transition-colors"
           >
-            Call Us: +91 22 2830 3456
+            Call Us: +91 98200 12345
           </a>
         </div>
       </div>

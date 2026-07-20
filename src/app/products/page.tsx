@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 
-import { ChevronRight, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useInView } from '@/hooks/useHooks';
 import { products } from '@/data/products';
 
@@ -39,50 +39,44 @@ function ProductCategories() {
   const { ref, isInView } = useInView();
 
   return (
-    <section className="py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-20 md:py-28 bg-white">
+      <div className="max-w-5xl mx-auto px-6">
         <div ref={ref} className={`text-center mb-16 ${isInView ? 'animate-fade-up' : 'opacity-0'}`}>
           <span className="text-primary text-sm font-semibold uppercase tracking-wider">Product Range</span>
           <h2 className="text-3xl md:text-4xl font-semibold text-dark-navy mt-3 mb-4">
             Industrial Gas Portfolio
           </h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="flex flex-col gap-8">
           {products.map((cat, i) => (
-            <div key={i} className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-500 flex flex-col hover:-translate-y-1">
+            <div key={i} className="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-primary/50 hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row items-center p-4 gap-6">
               {/* Image Section */}
-              <div className="relative aspect-[16/10] overflow-hidden shrink-0">
-                <img src={cat.img} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-5 left-6 right-6">
-                  <h3 className="text-2xl font-bold text-white drop-shadow-md translate-y-2 group-hover:translate-y-0 transition-transform duration-500">{cat.name}</h3>
-                </div>
+              <div className="relative w-full md:w-1/3 aspect-[4/3] rounded-lg overflow-hidden shrink-0 bg-slate-50 flex items-center justify-center p-4">
+                <img src={cat.mainImg} alt={cat.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
               </div>
               
               {/* Content Section */}
-              <div className="p-6 flex flex-col flex-1 bg-white relative">
-                <div className="absolute top-0 right-6 -translate-y-1/2 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-1/2 transition-all duration-500 scale-50 group-hover:scale-100">
-                  <ChevronRight size={20} />
-                </div>
+              <div className="flex flex-col flex-1 py-4">
+                <h3 className="text-2xl font-bold text-primary mb-3">{cat.title}</h3>
                 
-                <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">{cat.desc}</p>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-2xl">{cat.desc}</p>
                 
                 {/* Pill Tags */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {cat.items.map((item, j) => (
-                    <span key={j} className="bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-colors cursor-default shadow-sm">
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {cat.details.slice(0, 4).map((item, j) => (
+                    <span key={j} className="text-slate-500 text-xs font-medium px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50">
                       {item}
                     </span>
                   ))}
+                  {cat.details.length > 4 && (
+                    <span className="text-primary text-xs font-medium px-3 py-1.5">+{cat.details.length - 4} more</span>
+                  )}
                 </div>
                 
                 {/* Actions */}
-                <div className="flex items-center gap-3 mt-auto pt-5 border-t border-slate-100">
-                  <Link href={`/products/${cat.slug}`} className="flex-1 inline-flex justify-center items-center gap-2 bg-primary/5 text-primary hover:bg-primary hover:text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-all">
+                <div className="flex items-center gap-4 mt-auto">
+                  <Link href={`/products/${cat.slug}`} className="inline-flex justify-center items-center gap-2 bg-primary text-white hover:bg-primary/90 px-6 py-2.5 rounded-lg text-sm font-semibold transition-all">
                     View Details
-                  </Link>
-                  <Link href="/contact" className="flex-1 inline-flex justify-center items-center gap-2 bg-white text-dark-navy border border-slate-200 hover:bg-slate-50 hover:border-slate-300 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm">
-                    Request Quote
                   </Link>
                 </div>
               </div>

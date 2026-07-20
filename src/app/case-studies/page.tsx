@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 
-import { ArrowRight, CheckCircle, Calendar, Zap, AlertTriangle, Building2, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight, CheckCircle, Calendar, Zap, AlertTriangle, Building2, Image as ImageIcon, MapPin } from 'lucide-react';
 import { useInView } from '@/hooks/useHooks';
 
 export default function CaseStudiesPage() {
@@ -43,8 +43,10 @@ function CaseStudiesList() {
       solution: 'Suggested installation of LPG Manifold System using 425 KG LPG Cylinders. Customer placed the order in 2 days. Installed 6 Working Cylinders and 6 Standby Cylinders. Installation completed within 24 Hours. Started continuous LPG Filled Cylinder Supply immediately.',
       result: 'Customer remained fully operational. Not a single day of production shutdown.',
       images: [
-        '/images/gas_cylinders.png',
-        '/images/pipeline_infrastructure.png'
+        '/images/casestudies/euroglobal.jpeg',
+        '/images/casestudies/euroglobal2.png',
+        '/images/casestudies/euroglobal3.png',
+        // '/images/pipeline_infrastructure.png'
       ]
     },
     {
@@ -105,7 +107,7 @@ function CaseStudiesList() {
               <div className="p-8 md:p-12">
                 <div className="flex flex-col md:flex-row gap-12">
                   {/* Content Column */}
-                  <div className="flex-1">
+                  <div className="md:w-7/12 flex flex-col">
                     <div className="flex items-center gap-2 mb-3">
                       <Building2 size={18} className="text-primary" />
                       <span className="text-primary font-bold text-sm tracking-widest uppercase">CASE STUDY {i + 1}</span>
@@ -114,7 +116,7 @@ function CaseStudiesList() {
                     <div className="flex flex-wrap gap-4 text-sm text-text-light mb-8">
                       {cs.location && (
                         <span className="flex items-center gap-1.5 bg-light-bg px-3 py-1 rounded-md border border-light-border">
-                          <CheckCircle size={14} className="text-accent" /> {cs.location}
+                          <MapPin size={14} className="text-accent" /> {cs.location}
                         </span>
                       )}
                       {cs.period && (
@@ -125,7 +127,7 @@ function CaseStudiesList() {
                     </div>
 
                     {!cs.isMultiProject ? (
-                      <div className="space-y-8">
+                      <div className="space-y-6">
                         <div>
                           <h3 className="flex items-center gap-2 text-lg font-semibold text-dark-navy mb-3">
                             <AlertTriangle size={20} className="text-orange-500" /> Challenge
@@ -166,18 +168,18 @@ function CaseStudiesList() {
                       </div>
                     )}
                   </div>
-                  
+
                   {/* Gallery Column */}
-                  <div className="md:w-1/3 flex flex-col gap-4">
+                  <div className="md:w-5/12 flex flex-col gap-4">
                     <h4 className="font-semibold text-dark-navy flex items-center gap-2">
                       <ImageIcon size={18} className="text-primary" /> Project Gallery
                     </h4>
                     {cs.images?.map((img, imgIdx) => (
                       <div key={imgIdx} className="rounded-xl overflow-hidden shadow-md border border-light-border cursor-pointer group">
-                        <img 
-                          src={img} 
-                          alt="Project Image" 
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                        <img
+                          src={img}
+                          alt="Project Image"
+                          className="w-full h-72 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                     ))}

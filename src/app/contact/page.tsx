@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from 'lucide-react';
 import { useInView } from '@/hooks/useHooks';
+import { products } from '@/data/products';
 
 export default function ContactPage() {
   return (
@@ -135,15 +136,17 @@ function ContactSection() {
                   className="w-full px-4 py-3 rounded-lg border border-light-border focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm transition-colors text-text-light"
                 >
                   <option value="">Select requirement type</option>
-                  <option value="industrial-gases">Industrial Gases</option>
-                  <option value="medical-gases">Medical Gases</option>
-                  <option value="cryogenic-storage">Cryogenic Storage Systems</option>
-                  <option value="hydrogen">Hydrogen Systems</option>
-                  <option value="lpg-lng">LPG / LNG Systems</option>
-                  <option value="fire-fighting">Fire Fighting Gases</option>
-                  <option value="pipeline">Gas Pipeline Engineering</option>
-                  <option value="turnkey">Turnkey Engineering Project</option>
-                  <option value="maintenance">Maintenance Service</option>
+                  <optgroup label="Products">
+                    {products.map((p) => (
+                      <option key={p.slug} value={p.slug}>{p.title}</option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Services">
+                    <option value="turnkey-engineering">Turnkey Engineering Project</option>
+                    <option value="maintenance-service">Maintenance Service</option>
+                    <option value="technical-consultation">Technical Consultation</option>
+                    <option value="installation-commissioning">Installation & Commissioning</option>
+                  </optgroup>
                   <option value="other">Other</option>
                 </select>
               </div>
@@ -186,9 +189,9 @@ function ContactSection() {
                   <div>
                     <h4 className="font-medium text-sm mb-1">Head Office</h4>
                     <p className="text-white/60 text-sm leading-relaxed">
-                      201/202, Industrial Estate,<br />
-                      Andheri (East), Mumbai – 400093,<br />
-                      Maharashtra, India
+                      RK INDUSTRIAL WORLD, PLOT NO. E - 16,<br />
+                      OPP. LUFAS CREATION, RAJ SAMADHIYALA,<br />
+                      RAJKOT - Bhavnagar HIGHWAY, RAJKOT - 360020 GUJARAT
                     </p>
                   </div>
                 </div>
@@ -198,7 +201,6 @@ function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium text-sm mb-1">Phone</h4>
-                    <p className="text-white/60 text-sm">+91 22 2830 3456</p>
                     <p className="text-white/60 text-sm">+91 98200 12345</p>
                   </div>
                 </div>
@@ -228,7 +230,7 @@ function ContactSection() {
                 <h4 className="font-medium text-sm mb-4">Quick Actions</h4>
                 <div className="space-y-3">
                   <a
-                    href="tel:+912228303456"
+                    href="tel:+919820012345"
                     className="flex items-center gap-2 text-accent hover:text-white text-sm transition-colors"
                   >
                     <ArrowRight size={14} /> Call Sales Department
@@ -256,7 +258,7 @@ function ContactInfoSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div ref={ref} className={`grid md:grid-cols-3 gap-8 ${isInView ? 'animate-fade-up' : 'opacity-0'}`}>
           {[
-            { icon: MapPin, title: 'Head Office', details: ['201/202, Industrial Estate', 'Andheri (East), Mumbai', '400093, Maharashtra'] },
+            { icon: MapPin, title: 'Head Office', details: ['RK INDUSTRIAL WORLD, PLOT NO. E - 16', 'OPP. LUFAS CREATION, RAJ SAMADHIYALA', 'RAJKOT - Bhavnagar HIGHWAY, RAJKOT - 360020 GUJARAT'] },
             { icon: Phone, title: 'Regional Offices', details: ['Ahmedabad', 'Chennai', 'Delhi NCR', 'Bangalore'] },
             { icon: Clock, title: 'Emergency Support', details: ['24/7 Emergency Helpline', '+91 98200 12345', 'emergency@daftari.com'] },
           ].map((item, i) => (

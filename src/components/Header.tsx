@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, Phone, Mail, MapPin } from 'lucide-react';
+import { products } from '@/data/products';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,12 +24,11 @@ export default function Header() {
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
     { label: 'Products', path: '/products', hasDropdown: true },
-    { label: 'Engineering Solutions', path: '/engineering' },
+    // { label: 'Engineering Solutions', path: '/engineering' },
     { label: 'Industries', path: '/industries' },
-    { label: 'Infrastructure', path: '/infrastructure' },
     { label: 'Services', path: '/services' },
     { label: 'Case Studies', path: '/case-studies' },
-    { label: 'Gallery', path: '/gallery' },
+
     { label: 'Contact', path: '/contact' },
   ];
 
@@ -39,7 +39,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between py-2">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5"><Mail size={13} /> info@daftariindustries.com</span>
-            <span className="flex items-center gap-1.5"><Phone size={13} /> +91 22 2830 3456</span>
+            <span className="flex items-center gap-1.5"><Phone size={13} /> +91 98200 12345</span>
           </div>
           <div className="flex items-center gap-1.5">
             <MapPin size={13} /> Mumbai, Maharashtra, India
@@ -49,9 +49,8 @@ export default function Header() {
 
       {/* Main Header */}
       <header
-        className={`sticky top-0 z-50 bg-white transition-shadow duration-300 ${
-          isScrolled ? 'shadow-[0_2px_20px_rgba(0,0,0,0.08)]' : 'shadow-sm'
-        }`}
+        className={`sticky top-0 z-50 bg-white transition-shadow duration-300 ${isScrolled ? 'shadow-[0_2px_20px_rgba(0,0,0,0.08)]' : 'shadow-sm'
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-18 md:h-20">
@@ -123,25 +122,13 @@ function NavItem({ item }: { item: { label: string; path: string; hasDropdown?: 
     return (
       <Link
         href={item.path}
-        className={`px-3 py-6 text-sm font-medium transition-colors ${
-          isActive ? 'text-primary' : 'text-text hover:text-primary'
-        }`}
+        className={`px-3 py-6 text-sm font-medium transition-colors ${isActive ? 'text-primary' : 'text-text hover:text-primary'
+          }`}
       >
         {item.label}
       </Link>
     );
   }
-
-  const products = [
-    { name: 'Industrial Gases', desc: 'Oxygen, Nitrogen, Argon, CO₂ & more', slug: 'industrial-gases' },
-    { name: 'Medical Gases', desc: 'Oxygen, Air, Nitrous Oxide, Medical Grade', slug: 'medical-gases' },
-    { name: 'Cryogenic Liquids', desc: 'Liquid Nitrogen, Oxygen, Argon, CO₂', slug: 'cryogenic-liquids' },
-    { name: 'Hydrogen', desc: 'Industrial & Green Hydrogen', slug: 'hydrogen' },
-    { name: 'LPG & LNG', desc: 'Liquefied Petroleum & Natural Gas', slug: 'lpg-lng' },
-    { name: 'Fire Fighting Gases', desc: 'FM-200, Novec 1230, CO₂ Systems', slug: 'fire-fighting-gases' },
-    { name: 'Specialty Gases', desc: 'High Purity & Calibration Gases', slug: 'specialty-gases' },
-    { name: 'Gas Mixtures', desc: 'Custom Blended Gas Solutions', slug: 'gas-mixtures' },
-  ];
 
   return (
     <div
@@ -154,18 +141,18 @@ function NavItem({ item }: { item: { label: string; path: string; hasDropdown?: 
         <ChevronDown size={14} className={`transition-transform ${hovered ? 'rotate-180' : ''}`} />
       </button>
       {hovered && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 w-[700px] bg-white rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-light-border p-6 grid grid-cols-2 gap-4 z-50">
+        <div className="absolute top-full left-1/2 -translate-x-1/2 w-[700px] bg-white rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-light-border p-6 grid grid-cols-2 gap-4 z-50 max-h-[80vh] overflow-y-auto">
           <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-t border-l border-light-border transform rotate-45"></div>
           {products.map((p) => (
             <Link
-              key={p.name}
+              key={p.id}
               href={`/products/${p.slug}`}
               className="block p-3 rounded-lg hover:bg-light-bg transition-colors group"
             >
-              <div className="text-sm font-semibold text-dark-navy group-hover:text-primary transition-colors">
-                {p.name}
+              <div className="text-sm font-semibold text-dark-navy group-hover:text-primary transition-colors line-clamp-1">
+                {p.title}
               </div>
-              <div className="text-xs text-text-light mt-0.5">{p.desc}</div>
+              <div className="text-xs text-text-light mt-0.5 line-clamp-1">{p.desc}</div>
             </Link>
           ))}
         </div>
